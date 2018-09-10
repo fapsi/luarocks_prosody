@@ -10,17 +10,14 @@ description = {
 	summary = "Prosody is a modern XMPP communication server";
 	detailed = "Prosody is a modern XMPP communication server. It aims to be easy to set up and configure, and efficient with system resources. Additionally, for developers it aims to be easy to extend and give a flexible system on which to rapidly develop added functionality, or prototype new protocols.";
 	homepage = "https://prosody.im/";
-	issues_url = "https://issues.prosody.im/";
 	license = "MIT/X11";
 }
 dependencies = {
 	"lua >= 5.1, < 5.3";
 	"luafilesystem >=1.6.2";
-	"luasocket >= 3";
-	"luasec ~> 0.5, >= 0.7";
+	"luasec >= 0.7";
 	"luaexpat >= 1.3.0";
 	"luaevent >= 0.4.4"; -- optional, for net.server_event
-	"cqueues >= 20150113"; -- optional, for net.cqueues
 	"lua-zlib"; -- optional, for mod_compression
 	"luadbi >= 0.5"; -- optional, for mod_storage_sql
 	"luabitop"; -- optional, for mod_websocket
@@ -55,7 +52,6 @@ build = {
 
 		["net.adns"] = "net/adns.lua";
 		["net.connlisteners"] = "net/connlisteners.lua";
-		["net.cqueues"] = "net/cqueues.lua";
 		["net.dns"] = "net/dns.lua";
 		["net.http"] = "net/http.lua";
 		["net.http.codes"] = "net/http/codes.lua";
@@ -85,7 +81,7 @@ build = {
 		["util.hex"] = "util/hex.lua";
 		["util.hmac"] = "util/hmac.lua";
 		["util.http"] = "util/http.lua";
-		["util.id"] = "util/id.lua"
+		["util.id"] = "util/id.lua";
 		["util.import"] = "util/import.lua";
 		["util.interpolation"] = "util/interpolation.lua";
 		["util.ip"] = "util/ip.lua";
@@ -132,6 +128,9 @@ build = {
 
 		["util.crand"] = {
 			sources = { "util-src/crand.c"; };
+			defines = {"WITH_OPENSSL"};
+			incdirs = { "$(OPENSSL_INCDIR)"; };
+			libdirs = { "$(OPENSSL_LIBDIR)"; };
 		};
 		["util.encodings"] = {
 			sources = { "util-src/encodings.c"; };
