@@ -229,28 +229,7 @@ build = {
 	};
 	patches = {
 		["luarocks-paths.diff"] = [[
---- -	2018-05-31 00:10:09.000000000 +0200
-+++ prosody	2018-08-20 22:55:25.773091685 +0200
-@@ -9,12 +9,13 @@
- 
- -- prosody - main executable for Prosody XMPP server
- 
---- Will be modified by configure script if run --
-+require "luarocks.loader";
-+local luarocks_install_dir = require"luarocks.path".install_dir(assert(require "luarocks.show".pick_installed_rock("]] .. package .. [[", "]] .. version .. [[", nil)))
- 
--CFG_SOURCEDIR=CFG_SOURCEDIR or os.getenv("PROSODY_SRCDIR");
--CFG_CONFIGDIR=CFG_CONFIGDIR or os.getenv("PROSODY_CFGDIR");
--CFG_PLUGINDIR=CFG_PLUGINDIR or os.getenv("PROSODY_PLUGINDIR");
--CFG_DATADIR=CFG_DATADIR or os.getenv("PROSODY_DATADIR");
-+CFG_SOURCEDIR=CFG_SOURCEDIR or os.getenv("PROSODY_SRCDIR") or (luarocks_install_dir);
-+CFG_CONFIGDIR=CFG_CONFIGDIR or os.getenv("PROSODY_CFGDIR") or (luarocks_install_dir .. "/conf");
-+CFG_PLUGINDIR=CFG_PLUGINDIR or os.getenv("PROSODY_PLUGINDIR") or (luarocks_install_dir .. "/plugins");
-+CFG_DATADIR=CFG_DATADIR or os.getenv("PROSODY_DATADIR") or (luarocks_install_dir .. "/data");
- 
- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
- 
---- util-src/table.c	2019-01-07 16:34:23.000000000 +0100
+--- -	2019-01-07 16:34:23.000000000 +0100
 +++ util-src/table.c	2019-04-02 22:21:11.473951689 +0200
 @@ -11,7 +11,8 @@
  	lua_createtable(L, n_args, 1);
