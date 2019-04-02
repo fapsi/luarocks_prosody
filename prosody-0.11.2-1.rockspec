@@ -51,14 +51,20 @@ build = {
 		["core.usermanager"] = "core/usermanager.lua";
 
 		["net.adns"] = "net/adns.lua";
+		["net.connect"] = "net/connect.lua";
 		["net.connlisteners"] = "net/connlisteners.lua";
+		["net.cqueues"] = "net/cqueues.lua";
 		["net.dns"] = "net/dns.lua";
 		["net.http"] = "net/http.lua";
 		["net.http.codes"] = "net/http/codes.lua";
 		["net.http.parser"] = "net/http/parser.lua";
 		["net.http.server"] = "net/http/server.lua";
 		["net.httpserver"] = "net/httpserver.lua";
+		["net.resolvers.basic"] = "net/resolvers/basic.lua";
+		["net.resolvers.manual"] = "net/resolvers/manual.lua";
+		["net.resolvers.service"] = "net/resolvers/service.lua";
 		["net.server"] = "net/server.lua";
+		["net.server_epoll"] = "net/server_epoll.lua";
 		["net.server_event"] = "net/server_event.lua";
 		["net.server_select"] = "net/server_select.lua";
 		["net.websocket"] = "net/websocket.lua";
@@ -66,6 +72,7 @@ build = {
 
 		["util.adhoc"] = "util/adhoc.lua";
 		["util.array"] = "util/array.lua";
+		["util.async"] = "util/async.lua";
 		["util.cache"] = "util/cache.lua";
 		["util.caps"] = "util/caps.lua";
 		["util.dataforms"] = "util/dataforms.lua";
@@ -83,6 +90,7 @@ build = {
 		["util.http"] = "util/http.lua";
 		["util.id"] = "util/id.lua";
 		["util.import"] = "util/import.lua";
+		["util.indexedbheap"] = "util/indexedbheap.lua";
 		["util.interpolation"] = "util/interpolation.lua";
 		["util.ip"] = "util/ip.lua";
 		["util.iterators"] = "util/iterators.lua";
@@ -95,6 +103,7 @@ build = {
 		["util.paths"] = "util/paths.lua";
 		["util.pluginloader"] = "util/pluginloader.lua";
 		["util.presence"] = "util/presence.lua";
+		["util.promise"] = "util/promise.lua";
 		["util.prosodyctl"] = "util/prosodyctl.lua";
 		["util.pubsub"] = "util/pubsub.lua";
 		["util.queue"] = "util/queue.lua";
@@ -114,18 +123,24 @@ build = {
 		["util.sql"] = "util/sql.lua";
 		["util.sslconfig"] = "util/sslconfig.lua";
 		["util.stanza"] = "util/stanza.lua";
+		["util.startup"] = "util/startup.lua";
 		["util.statistics"] = "util/statistics.lua";
 		["util.statsd"] = "util/statsd.lua";
 		["util.template"] = "util/template.lua";
 		["util.termcolours"] = "util/termcolours.lua";
 		["util.throttle"] = "util/throttle.lua";
-		["util.time"] = "util/time.lua";
+		["util.timer"] = "util/timer.lua";
 		["util.uuid"] = "util/uuid.lua";
+		["util.vcard"] = "util/vcard.lua";
 		["util.watchdog"] = "util/watchdog.lua";
 		["util.x509"] = "util/x509.lua";
 		["util.xml"] = "util/xml.lua";
 		["util.xmppstream"] = "util/xmppstream.lua";
+		["util.xpcall"] = "util/xpcall.lua";
 
+		["util.compat"] = {
+			sources = { "util-src/compat.c"; };
+		};
 		["util.crand"] = {
 			sources = { "util-src/crand.c"; };
 			defines = { "WITH_OPENSSL"; };
@@ -147,6 +162,9 @@ build = {
 		["util.net"] = {
 			sources = { "util-src/net.c"; };
 		};
+		["util.poll"] = {
+			sources = { "util-src/poll.c"; };
+		};
 		["util.ringbuffer"] = {
 			sources = { "util-src/ringbuffer.c"; };
 		};
@@ -155,6 +173,9 @@ build = {
 		};
 		["util.table"] = {
 			sources = { "util-src/table.c"; };
+		};
+		["util.time"] = {
+			sources = { "util-src/time.c"; };
 		};
 
 		-- ["fallbacks.bit"] = "fallbacks/bit.lua";
@@ -228,25 +249,6 @@ build = {
  
  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
  
-@@ -293,17 +294,7 @@
- end
- 
- function read_version()
--	-- Try to determine version
--	local version_file = io.open((CFG_SOURCEDIR or ".").."/prosody.version");
--	if version_file then
--		prosody.version = version_file:read("*a"):gsub("%s*$", "");
--		version_file:close();
--		if #prosody.version == 12 and prosody.version:match("^[a-f0-9]+$") then
--			prosody.version = "hg:"..prosody.version;
--		end
--	else
--		prosody.version = "unknown";
--	end
-+	prosody.version = "]] .. prosodyversion .. [[";
- end
- 
- function load_secondary_libraries()
 ]]
 	};
 }
