@@ -173,7 +173,7 @@ build = {
 		};
 		["util.table"] = {
 			sources = { "util-src/table.c"; };
-			defines = { "_GNU_SOURCE -std=gnu99 -pedantic" }
+			defines = { "_GNU_SOURCE' '-std=gnu99 -pedantic" }
 		};
 		["util.time"] = {
 			sources = { "util-src/time.c"; };
