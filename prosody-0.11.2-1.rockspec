@@ -249,7 +249,19 @@ build = {
 +CFG_DATADIR=CFG_DATADIR or os.getenv("PROSODY_DATADIR") or (luarocks_install_dir .. "/data");
  
  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
++++ util-src/table.c	2019-04-02 22:21:11.473951689 +0200
+@@ -11,7 +11,8 @@
+ 	lua_createtable(L, n_args, 1);
+ 	lua_insert(L, 1);
  
+-	for(int arg = n_args; arg >= 1; arg--) {
++	int arg;
++	for(arg = n_args; arg >= 1; arg--) {
+ 		lua_rawseti(L, 1, arg);
+ 	}
+ 
+
 ]]
 	};
 }
