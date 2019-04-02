@@ -16,7 +16,7 @@ dependencies = {
 	"lua >= 5.1, < 5.3";
 	"luafilesystem >=1.6.2";
 	"luasocket >= 3";
-	"luasec ~> 0.5, >= 0.7";
+	"luasec >= 0.7";
 	"luaexpat >= 1.3.0";
 	"luaevent >= 0.4.4"; -- optional, for net.server_event
 	"lua-zlib"; -- optional, for mod_compression
