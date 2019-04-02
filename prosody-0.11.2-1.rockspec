@@ -130,7 +130,7 @@ build = {
 
 		["util.crand"] = {
 			sources = { "util-src/crand.c"; };
-			defines = {"WITH_OPENSSL"}
+			defines = { "WITH_OPENSSL"; };
 			incdirs = { "$(OPENSSL_INCDIR)"; };
 			libdirs = { "$(OPENSSL_LIBDIR)"; };
 		};
