@@ -10,7 +10,6 @@ description = {
 	summary = "Prosody is a modern XMPP communication server";
 	detailed = "Prosody is a modern XMPP communication server. It aims to be easy to set up and configure, and efficient with system resources. Additionally, for developers it aims to be easy to extend and give a flexible system on which to rapidly develop added functionality, or prototype new protocols.";
 	homepage = "https://prosody.im/";
-	issues_url = "https://issues.prosody.im/";
 	license = "MIT/X11";
 }
 dependencies = {
