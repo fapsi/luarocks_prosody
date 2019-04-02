@@ -229,8 +229,8 @@ build = {
 	};
 	patches = {
 		["luarocks-paths.diff"] = [[
---- -	2019-01-07 16:34:23.000000000 +0100
-+++ util-src/table.c	2019-04-02 22:21:11.473951689 +0200
+--- ./util-src/table.c	2019-01-07 16:34:23.000000000 +0100
++++ ./util-src/table.c	2019-04-02 22:21:11.473951689 +0200
 @@ -11,7 +11,8 @@
  	lua_createtable(L, n_args, 1);
  	lua_insert(L, 1);
