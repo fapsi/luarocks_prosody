@@ -14,10 +14,10 @@ description = {
 }
 dependencies = {
 	"lua >= 5.1, < 5.3";
-	"luafilesystem >=1.6.2";
+	"luafilesystem >=1.7.0";
 	"luasec >= 0.7";
-	"luaexpat >= 1.3.0";
-	"luaevent >= 0.4.4"; -- optional, for net.server_event
+	"luaexpat >= 1.3.3";
+	"luaevent >= 0.4.6"; -- optional, for net.server_event
 	"lua-zlib"; -- optional, for mod_compression
 	"luadbi >= 0.5"; -- optional, for mod_storage_sql
 	"luabitop"; -- optional, for mod_websocket
