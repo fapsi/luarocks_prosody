@@ -240,10 +240,10 @@ build = {
 -CFG_DATADIR=CFG_DATADIR or os.getenv("PROSODY_DATADIR");
 +local luarocks_install_dir = require"luarocks.path".install_dir(assert(require "luarocks.show".pick_installed_rock("]] .. package .. [[", "]] .. version .. [[", nil)))
 +
-+CFG_SOURCEDIR=CFG_SOURCEDIR or os.getenv("PROSODY_SRCDIR") or (luarocks_install_dir);
-+CFG_CONFIGDIR=CFG_CONFIGDIR or os.getenv("PROSODY_CFGDIR") or (luarocks_install_dir .. "/conf");
-+CFG_PLUGINDIR=CFG_PLUGINDIR or os.getenv("PROSODY_PLUGINDIR") or (luarocks_install_dir .. "/plugins");
-+CFG_DATADIR=CFG_DATADIR or os.getenv("PROSODY_DATADIR") or (luarocks_install_dir .. "/data");
++CFG_SOURCEDIR=(luarocks_install_dir);
++CFG_CONFIGDIR=(luarocks_install_dir .. "/conf");
++CFG_PLUGINDIR=(luarocks_install_dir .. "/plugins");
++CFG_DATADIR=(luarocks_install_dir .. "/data");
  
  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
  
