@@ -239,7 +239,7 @@ build = {
 -CFG_PLUGINDIR=CFG_PLUGINDIR or os.getenv("PROSODY_PLUGINDIR");
 -CFG_DATADIR=CFG_DATADIR or os.getenv("PROSODY_DATADIR");
 +local luarocks_install_dir = require"luarocks.path".install_dir(assert(require "luarocks.show".pick_installed_rock("]] .. package .. [[", "]] .. version .. [[", nil)))
-+
++print(luarocks_install_dir)
 +CFG_SOURCEDIR=(luarocks_install_dir);
 +CFG_CONFIGDIR=(luarocks_install_dir .. "/conf");
 +CFG_PLUGINDIR=(luarocks_install_dir .. "/plugins");
