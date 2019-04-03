@@ -228,6 +228,25 @@ build = {
 	};
 	patches = {
 		["luarocks-paths.diff"] = [[
+--- prosody-0.11.2/prosody	2019-01-07 16:34:23.000000000 +0100
++++ prosody-0.11.2-patched/prosody	2019-04-03 20:12:26.716926200 +0200
+@@ -11,10 +11,12 @@
+ 
+ -- Will be modified by configure script if run --
+ 
+-CFG_SOURCEDIR=CFG_SOURCEDIR or os.getenv("PROSODY_SRCDIR");
+-CFG_CONFIGDIR=CFG_CONFIGDIR or os.getenv("PROSODY_CFGDIR");
+-CFG_PLUGINDIR=CFG_PLUGINDIR or os.getenv("PROSODY_PLUGINDIR");
+-CFG_DATADIR=CFG_DATADIR or os.getenv("PROSODY_DATADIR");
++local luarocks_install_dir = require"luarocks.path".install_dir(assert(require "luarocks.show".pick_installed_rock("]] .. package .. [[", "]] .. version .. [[", nil)))
++
++CFG_SOURCEDIR=CFG_SOURCEDIR or os.getenv("PROSODY_SRCDIR") or (luarocks_install_dir);
++CFG_CONFIGDIR=CFG_CONFIGDIR or os.getenv("PROSODY_CFGDIR") or (luarocks_install_dir .. "/conf");
++CFG_PLUGINDIR=CFG_PLUGINDIR or os.getenv("PROSODY_PLUGINDIR") or (luarocks_install_dir .. "/plugins");
++CFG_DATADIR=CFG_DATADIR or os.getenv("PROSODY_DATADIR") or (luarocks_install_dir .. "/data");
+ 
+ -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+ 
 --- ./util-src/table.c	2019-01-07 16:34:23.000000000 +0100
 +++ ./util-src/table.c	2019-04-02 22:21:11.473951689 +0200
 @@ -11,7 +11,8 @@
