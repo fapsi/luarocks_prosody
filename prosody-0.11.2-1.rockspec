@@ -227,46 +227,5 @@ build = {
 		"man";
 		"plugins";
 	};
-	patches = {
-		["luarocks-paths.diff"] = [[
---- ./util-src/table.c	2019-01-07 16:34:23.000000000 +0100
-+++ ./util-src/table.c	2019-04-02 22:21:11.473951689 +0200
-@@ -11,7 +11,8 @@
- 	lua_createtable(L, n_args, 1);
- 	lua_insert(L, 1);
- 
--	for(int arg = n_args; arg >= 1; arg--) {
-+	int arg;
-+	for(arg = n_args; arg >= 1; arg--) {
- 		lua_rawseti(L, 1, arg);
- 	}
- 
-
---- ./util-src/signal.c	2019-01-07 16:34:23.000000000 +0100
-+++ ./util-src/signal.c	2019-04-02 22:46:42.694021686 +0200
-@@ -175,7 +175,8 @@
- 	lua_pushstring(L, LUA_SIGNAL);
- 	lua_gettable(L, LUA_REGISTRYINDEX);
- 
--	for(int i = 0; i < nsig; i++) {
-+	int i;
-+	for(i = 0; i < nsig; i++) {
- 		lua_pushnumber(L, signals[i]);
- 		lua_gettable(L, -2);
- 		lua_call(L, 0, 0);
---- ./util-src/poll.c	2019-01-07 16:34:23.000000000 +0100
-+++ ./util-src/poll.c	2019-04-02 22:21:55.007287013 +0200
-@@ -260,8 +260,8 @@
- 	}
- 
- #else
--
--	for(int fd = state->processed + 1; fd < FD_SETSIZE; fd++) {
-+	int fd;
-+	for(fd = state->processed + 1; fd < FD_SETSIZE; fd++) {
- 		if(FD_ISSET(fd, &state->readable) || FD_ISSET(fd, &state->writable) || FD_ISSET(fd, &state->err)) {
- 			lua_pushinteger(L, fd);
- 			lua_pushboolean(L, FD_ISSET(fd, &state->readable) | FD_ISSET(fd, &state->err));
-]]
-	};
+	patches = {};
 }
